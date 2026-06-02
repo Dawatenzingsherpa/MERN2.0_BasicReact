@@ -216,3 +216,106 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+
+.about {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.55)
+    ),
+    url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1600");
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.about-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* Content Section */
+.about-content {
+  padding: 70px 8%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.about-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+}
+
+.about-card h2 {
+  margin-bottom: 15px;
+  color: black  ;
+}
+
+.about-card p {
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+/* Stats Section */
+.stats {
+  padding: 30px 8% 80px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background: white;
+  padding: 30px;
+  width: 220px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.stat-box h2 {
+  color: #2563eb;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.stat-box p {
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-hero p {
+    font-size: 1rem;
+  }
+
+  .stats {
+    flex-direction: column;
+    align-items: center;
+  }
+}
