@@ -1,4 +1,7 @@
 import React from "react";
+import { useEffect,useState } from "react";
+import axios from "axios";
+
 
 const books = [
   {
@@ -46,6 +49,17 @@ const books = [
 ];
 
 const Books = () => {
+
+  const [book, setBook] = useState({});
+  async function fetchBooks() {
+    const response = await axios.get("http://localhost:3000/book");
+    console.log(response.data.data);  
+  }
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
   return (
     <div className="books-page">
       <div className="books-header">
