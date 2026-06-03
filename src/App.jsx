@@ -4,23 +4,28 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Books from './pages/Books'
+import Create from './pages/Create'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 function App() {
 
   return (
     <>
-      <Navbar />
 
       <BrowserRouter>
+      <Navbar/>
+
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/books' element={<Books />} />
+          <Route path='/create' element={<Create />} />
           <Route path='/about' element={<About />} />
         </Routes>
-      </BrowserRouter>
 
       <Footer />
+
+      </BrowserRouter>
+
     </>
   )
 }

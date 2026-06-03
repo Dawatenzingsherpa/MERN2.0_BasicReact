@@ -10,9 +10,10 @@ const Navbar = () => {
       </div>
 
       <ul className="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/books">Books</a></li>
-        <li><a href="/about">About</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/books">Books</Link></li>
+        <li><Link to="/create">Create Book</Link></li>
+        <li><Link to="/about">About</Link></li>
       </ul>
 
       <div className="nav-actions">
@@ -21,7 +22,6 @@ const Navbar = () => {
           placeholder="Search books..."
           className="search-box"
         />
-        <button className="login-btn">Login</button>
       </div>
     </nav>
     </>
