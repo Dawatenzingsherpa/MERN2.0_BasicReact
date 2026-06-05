@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect,useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 
@@ -35,7 +36,9 @@ const Books = () => {
 
               <div className="book-footer">
                 <span>{book.bookPrice}</span>
-                <button>Add to Cart</button>
+                <Link to={`/single/${book._id}`} className="btn btn-primary">
+                  View Details
+                </Link>
               </div>
             </div>
           </div>

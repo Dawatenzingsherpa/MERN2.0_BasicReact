@@ -21,7 +21,7 @@ function App() {
           <Route path='/books' element={<Books />} />
           <Route path='/create' element={<Create />} />
           <Route path='/about' element={<About />} />
-          <Route path='/books/:id' element={<Single />} />
+          <Route path='/single/:id' element={<Single />} />
         </Routes>
 
       <Footer />

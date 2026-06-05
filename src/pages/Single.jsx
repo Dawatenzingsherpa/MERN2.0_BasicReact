@@ -1,77 +1,74 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-
-const books = [
-  {
-    id: 1,
-    bookName: "Atomic Habits",
-    bookPrice: 499,
-    isbrNumber: "9780735211292",
-    authorName: "James Clear",
-    publishedAt: "2018-10-16",
-    publisher: "Avery",
-    image: "https://via.placeholder.com/300x400",
-  },
-];
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Single = () => {
+
   const { id } = useParams();
 
-  const book = books.find((item) => item.id === Number(id));
+  const [book, setBook] = useState({});
 
-  if (!book) {
-    return (
-      <div className="container mt-5">
-        <h2>Book not found</h2>
-      </div>
-    );
+  async function fetchBook() {
+    const response = await axios.get(`https://mern2-0-basicnode-1.onrender.com/book/${id}`);
+    console.log(response.data.data);
+    setBook(response.data.data);
   }
 
+  useEffect(() => {
+    fetchBook();
+  }, []);
+
+
+
+  
+
   return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-4">
-          <img
-            src={book.image}
-            alt={book.bookName}
-            className="img-fluid rounded shadow"
-          />
+    <>
+      <div className="single-book">
+        <div className="book-image-container">
+          <img src={book.imageURL} alt={book.bookName} className="book-image" />
         </div>
 
-        <div className="col-md-8">
-          <h2>{book.bookName}</h2>
+        <div className="book-details">
+          <h1 className="book-title">{book.bookName}</h1>
 
-          <table className="table table-bordered mt-3">
-            <tbody>
-              <tr>
-                <th>Author</th>
-                <td>{book.authorName}</td>
-              </tr>
+          <div className="detail-item">
+            <span className="label">Author:</span>
+            <span>{book.authorName}</span>
+          </div>
 
-              <tr>
-                <th>Price</th>
-                <td>Rs. {book.bookPrice}</td>
-              </tr>
+          <div className="detail-item">
+            <span className="label">Price:</span>
+            <span>Rs. {book.bookPrice}</span>
+          </div>
 
-              <tr>
-                <th>ISBN Number</th>
-                <td>{book.isbrNumber}</td>
-              </tr>
+          <div className="detail-item">
+            <span className="label">ISBN Number:</span>
+            <span>{book.isbrNumber}</span>
+          </div>
 
-              <tr>
-                <th>Published Date</th>
-                <td>{book.publishedAt}</td>
-              </tr>
+          <div className="detail-item">
+            <span className="label">Published At:</span>
+            <span>{book.publishedAt}</span>
+          </div>
 
-              <tr>
-                <th>Publisher</th>
-                <td>{book.publisher}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="detail-item">
+            <span className="label">Publisher:</span>
+            <span>{book.publisher}</span>
+          </div>
+
+          <Link to="/books" className="btn btn-secondary back-btn">
+            Back to Books
+          </Link>
+          <Link to={`/edit/${book._id}`} className="btn btn-primary edit-btn">
+            Edit Book
+          </Link>
+          
         </div>
-      </div>
     </div>
+    </>
+
   );
 };
 
