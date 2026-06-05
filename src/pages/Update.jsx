@@ -1,28 +1,42 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState ,useEffect  } from 'react'
+import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Create = () => {
-  const [book,setBook] = useState({
-    bookName : "",
-    bookPrice : "",
-    isbrNumber : "",
-    authorName : "",
-    publishedAt : "",
-    publisher : "",
-    
-  })
+const Update  = () => {
+  const {id} = useParams();
+  const navigate = useNavigate();
+  const [book,setBook] = useState({});
+
+  async function fetchBook() { 
+    const response = await axios.get(`https://mern2-0-basicnode-1.onrender.com/book/${id}`);
+    setBook(response.data.data);
+    console.log(response.data.data);
+  }
+
+  useEffect(() => { 
+    fetchBook();
+  },[]);
 
   const [file,setFile] = useState(null);
 
   const formData = new FormData();
-  formData.append("book",JSON.stringify(book));
-  formData.append("image",file);
+
+  if (file) {
+    formData.append("image", file);
+  }
+
+  formData.append("book", JSON.stringify(book));
+  console.log(formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post("https://mern2-0-basicnode-1.onrender.com/book",formData);
-    console.log(response.data);
+    const response = await axios.patch(`https://mern2-0-basicnode-1.onrender.com/book/${id}`,formData);
+    if(response.status === 200) {
+      navigate("/single/" + id);
+    }else {
+      alert("Failed to update book");
+    }
   }
 
   const handleFileChange = (e) => {
@@ -78,7 +92,7 @@ const Create = () => {
               type="text"
               name = "isbrNumber"
               placeholder="Enter ISBN number"
-              value={book.isbnNumber}
+              value={book.isbrNumber}
               
              />
           </div>
@@ -126,4 +140,4 @@ const Create = () => {
   )
 }
 
-export default Create
+export default Update

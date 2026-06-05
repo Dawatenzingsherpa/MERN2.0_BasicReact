@@ -11,7 +11,6 @@ const Single = () => {
 
   async function fetchBook() {
     const response = await axios.get(`https://mern2-0-basicnode-1.onrender.com/book/${id}`);
-    console.log(response.data.data);
     setBook(response.data.data);
   }
 
@@ -61,10 +60,10 @@ const Single = () => {
           <Link to="/books" className="btn btn-secondary back-btn">
             Back to Books
           </Link>
-          <Link to={`/edit/${book._id}`} className="btn btn-primary edit-btn">
+          <Link to={`/update/${book._id}`} className="btn btn-primary edit-btn">
             Edit Book
           </Link>
-          
+
         </div>
     </div>
     </>
