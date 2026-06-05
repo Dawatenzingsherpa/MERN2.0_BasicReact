@@ -21,7 +21,7 @@ const Create = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:3000/book",formData);
+    const response = await axios.post("https://mern2-0-basicnode-1.onrender.com/book",formData);
     console.log(response.data);
   }
 

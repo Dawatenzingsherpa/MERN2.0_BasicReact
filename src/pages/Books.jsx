@@ -9,7 +9,7 @@ const Books = () => {
 
   const [books, setBooks] = useState([]);
   async function fetchBooks() {
-    const response = await axios.get("http://localhost:3000/book");
+    const response = await axios.get("https://mern2-0-basicnode-1.onrender.com/book");
     setBooks(response.data.data);  
   }
 
